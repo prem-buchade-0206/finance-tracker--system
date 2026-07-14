@@ -1,0 +1,333 @@
+/* ==========================================================================
+   src/styles/tokens.css
+   Global Design Tokens — Personal Finance Tracker Design System
+   Loaded BEFORE globals.css. Consumed by Tailwind config + CSS Modules.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. COLOR PRIMITIVES (raw palette — never used directly in components)
+     ------------------------------------------------------------------------ */
+  --primitive-blue-50: #eff6ff;
+  --primitive-blue-100: #dbeafe;
+  --primitive-blue-200: #bfdbfe;
+  --primitive-blue-300: #93c5fd;
+  --primitive-blue-400: #60a5fa;
+  --primitive-blue-500: #3b82f6;
+  --primitive-blue-600: #2563eb;
+  --primitive-blue-700: #1d4ed8;
+  --primitive-blue-800: #1e40af;
+  --primitive-blue-900: #1e3a8a;
+
+  --primitive-violet-400: #a78bfa;
+  --primitive-violet-500: #8b5cf6;
+  --primitive-violet-600: #7c3aed;
+  --primitive-violet-700: #6d28d9;
+
+  --primitive-emerald-400: #34d399;
+  --primitive-emerald-500: #10b981;
+  --primitive-emerald-600: #059669;
+
+  --primitive-rose-400: #fb7185;
+  --primitive-rose-500: #f43f5e;
+  --primitive-rose-600: #e11d48;
+
+  --primitive-amber-400: #fbbf24;
+  --primitive-amber-500: #f59e0b;
+
+  --primitive-slate-0: #ffffff;
+  --primitive-slate-50: #f8fafc;
+  --primitive-slate-100: #f1f5f9;
+  --primitive-slate-200: #e2e8f0;
+  --primitive-slate-300: #cbd5e1;
+  --primitive-slate-400: #94a3b8;
+  --primitive-slate-500: #64748b;
+  --primitive-slate-600: #475569;
+  --primitive-slate-700: #334155;
+  --primitive-slate-800: #1e293b;
+  --primitive-slate-900: #0f172a;
+  --primitive-slate-950: #020617;
+
+  /* ------------------------------------------------------------------------
+     2. TYPOGRAPHY TOKENS
+     ------------------------------------------------------------------------ */
+  --font-display: 'Clash Display', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --fs-2xs: 0.6875rem;   /* 11px */
+  --fs-xs: 0.75rem;      /* 12px */
+  --fs-sm: 0.875rem;     /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-lg: 1.125rem;     /* 18px */
+  --fs-xl: 1.25rem;      /* 20px */
+  --fs-2xl: 1.5rem;      /* 24px */
+  --fs-3xl: 1.875rem;    /* 30px */
+  --fs-4xl: 2.25rem;     /* 36px */
+  --fs-5xl: 3rem;        /* 48px */
+  --fs-6xl: 3.75rem;     /* 60px */
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.3;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  --ls-tight: -0.02em;
+  --ls-normal: 0em;
+  --ls-wide: 0.02em;
+
+  /* ------------------------------------------------------------------------
+     3. SPACING SCALE (4px base grid)
+     ------------------------------------------------------------------------ */
+  --space-0: 0px;
+  --space-px: 1px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ------------------------------------------------------------------------
+     4. RADIUS SCALE
+     ------------------------------------------------------------------------ */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     5. Z-INDEX SCALE (centralized to prevent stacking-context bugs)
+     ------------------------------------------------------------------------ */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-toast: 700;
+  --z-tooltip: 800;
+  --z-max: 9999;
+
+  /* ------------------------------------------------------------------------
+     6. MOTION / TRANSITION PHYSICS
+     ------------------------------------------------------------------------ */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-magnetic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring-stiff: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  --duration-page: 800ms;
+
+  /* Framer Motion spring presets (consumed via JS, mirrored here for reference) */
+  --spring-stiffness-soft: 120;
+  --spring-stiffness-base: 260;
+  --spring-stiffness-snappy: 420;
+  --spring-damping-soft: 14;
+  --spring-damping-base: 20;
+  --spring-damping-snappy: 26;
+
+  /* ------------------------------------------------------------------------
+     7. SHADOWS (elevation system)
+     ------------------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 8px 10px -6px rgb(15 23 42 / 0.05);
+  --shadow-2xl: 0 25px 50px -12px rgb(15 23 42 / 0.25);
+  --shadow-glow-blue: 0 0 24px 0 rgb(59 130 246 / 0.35);
+  --shadow-glow-emerald: 0 0 24px 0 rgb(16 185 129 / 0.35);
+  --shadow-glow-rose: 0 0 24px 0 rgb(244 63 94 / 0.35);
+
+  /* ------------------------------------------------------------------------
+     8. LIGHT THEME — SEMANTIC TOKENS (default scope)
+     ------------------------------------------------------------------------ */
+  --color-bg-canvas: var(--primitive-slate-50);
+  --color-bg-surface: var(--primitive-slate-0);
+  --color-bg-surface-raised: var(--primitive-slate-0);
+  --color-bg-subtle: var(--primitive-slate-100);
+  --color-bg-muted: var(--primitive-slate-200);
+  --color-bg-inverse: var(--primitive-slate-900);
+
+  --color-border-default: var(--primitive-slate-200);
+  --color-border-subtle: var(--primitive-slate-100);
+  --color-border-strong: var(--primitive-slate-300);
+  --color-border-focus: var(--primitive-blue-500);
+
+  --color-text-primary: var(--primitive-slate-900);
+  --color-text-secondary: var(--primitive-slate-600);
+  --color-text-tertiary: var(--primitive-slate-400);
+  --color-text-inverse: var(--primitive-slate-0);
+  --color-text-disabled: var(--primitive-slate-300);
+
+  --color-brand-primary: var(--primitive-blue-600);
+  --color-brand-primary-hover: var(--primitive-blue-700);
+  --color-brand-secondary: var(--primitive-violet-500);
+
+  --color-financial-positive: var(--primitive-emerald-500);
+  --color-financial-positive-bg: rgb(16 185 129 / 0.1);
+  --color-financial-negative: var(--primitive-rose-500);
+  --color-financial-negative-bg: rgb(244 63 94 / 0.1);
+  --color-financial-neutral: var(--primitive-amber-500);
+  --color-financial-neutral-bg: rgb(245 158 11 / 0.1);
+
+  --color-success: var(--primitive-emerald-500);
+  --color-warning: var(--primitive-amber-500);
+  --color-danger: var(--primitive-rose-500);
+  --color-info: var(--primitive-blue-500);
+
+  /* Glassmorphism — light mode */
+  --glass-bg: rgb(255 255 255 / 0.65);
+  --glass-bg-strong: rgb(255 255 255 / 0.85);
+  --glass-border: rgb(255 255 255 / 0.4);
+  --glass-blur: 16px;
+  --glass-blur-strong: 24px;
+  --glass-saturate: 180%;
+  --glass-shadow: 0 8px 32px 0 rgb(15 23 42 / 0.08);
+
+  /* Aurora background glows — light mode */
+  --aurora-glow-1: radial-gradient(circle at 20% 20%, rgb(59 130 246 / 0.18), transparent 50%);
+  --aurora-glow-2: radial-gradient(circle at 80% 30%, rgb(139 92 246 / 0.15), transparent 50%);
+  --aurora-glow-3: radial-gradient(circle at 50% 80%, rgb(16 185 129 / 0.12), transparent 50%);
+  --aurora-opacity: 0.7;
+
+  /* Chart gradient stops (Recharts consumes these via inline SVG defs) */
+  --chart-gradient-income-start: var(--primitive-emerald-400);
+  --chart-gradient-income-end: rgb(52 211 153 / 0);
+  --chart-gradient-expense-start: var(--primitive-rose-400);
+  --chart-gradient-expense-end: rgb(251 113 133 / 0);
+  --chart-grid-line: var(--primitive-slate-200);
+  --chart-axis-text: var(--primitive-slate-400);
+
+  /* Skeleton / shimmer */
+  --skeleton-base: var(--primitive-slate-200);
+  --skeleton-shimmer: var(--primitive-slate-100);
+
+  /* Scrollbar */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: var(--primitive-slate-300);
+  --scrollbar-thumb-hover: var(--primitive-slate-400);
+
+  /* Focus ring (WCAG AA compliant, 3:1 contrast minimum against adjacent colors) */
+  --focus-ring-color: var(--primitive-blue-500);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+/* ==========================================================================
+   9. DARK THEME OVERRIDES
+   Activated via [data-theme="dark"] on <html>, toggled by ThemeContext.
+   ========================================================================== */
+[data-theme='dark'] {
+  --color-bg-canvas: var(--primitive-slate-950);
+  --color-bg-surface: var(--primitive-slate-900);
+  --color-bg-surface-raised: var(--primitive-slate-800);
+  --color-bg-subtle: var(--primitive-slate-800);
+  --color-bg-muted: var(--primitive-slate-700);
+  --color-bg-inverse: var(--primitive-slate-50);
+
+  --color-border-default: var(--primitive-slate-700);
+  --color-border-subtle: var(--primitive-slate-800);
+  --color-border-strong: var(--primitive-slate-600);
+  --color-border-focus: var(--primitive-blue-400);
+
+  --color-text-primary: var(--primitive-slate-50);
+  --color-text-secondary: var(--primitive-slate-300);
+  --color-text-tertiary: var(--primitive-slate-500);
+  --color-text-inverse: var(--primitive-slate-900);
+  --color-text-disabled: var(--primitive-slate-600);
+
+  --color-brand-primary: var(--primitive-blue-500);
+  --color-brand-primary-hover: var(--primitive-blue-400);
+  --color-brand-secondary: var(--primitive-violet-400);
+
+  --color-financial-positive: var(--primitive-emerald-400);
+  --color-financial-positive-bg: rgb(52 211 153 / 0.12);
+  --color-financial-negative: var(--primitive-rose-400);
+  --color-financial-negative-bg: rgb(251 113 133 / 0.12);
+  --color-financial-neutral: var(--primitive-amber-400);
+  --color-financial-neutral-bg: rgb(251 191 36 / 0.12);
+
+  --color-success: var(--primitive-emerald-400);
+  --color-warning: var(--primitive-amber-400);
+  --color-danger: var(--primitive-rose-400);
+  --color-info: var(--primitive-blue-400);
+
+  /* Glassmorphism — dark mode */
+  --glass-bg: rgb(15 23 42 / 0.55);
+  --glass-bg-strong: rgb(15 23 42 / 0.75);
+  --glass-border: rgb(255 255 255 / 0.08);
+  --glass-blur: 20px;
+  --glass-blur-strong: 28px;
+  --glass-saturate: 160%;
+  --glass-shadow: 0 8px 32px 0 rgb(0 0 0 / 0.35);
+
+  /* Aurora background glows — dark mode (higher intensity, deeper hues) */
+  --aurora-glow-1: radial-gradient(circle at 20% 20%, rgb(59 130 246 / 0.28), transparent 50%);
+  --aurora-glow-2: radial-gradient(circle at 80% 30%, rgb(139 92 246 / 0.24), transparent 50%);
+  --aurora-glow-3: radial-gradient(circle at 50% 80%, rgb(16 185 129 / 0.18), transparent 50%);
+  --aurora-opacity: 1;
+
+  --chart-gradient-income-start: var(--primitive-emerald-500);
+  --chart-gradient-income-end: rgb(16 185 129 / 0);
+  --chart-gradient-expense-start: var(--primitive-rose-500);
+  --chart-gradient-expense-end: rgb(244 63 94 / 0);
+  --chart-grid-line: var(--primitive-slate-800);
+  --chart-axis-text: var(--primitive-slate-500);
+
+  --skeleton-base: var(--primitive-slate-800);
+  --skeleton-shimmer: var(--primitive-slate-700);
+
+  --scrollbar-thumb: var(--primitive-slate-600);
+  --scrollbar-thumb-hover: var(--primitive-slate-500);
+
+  --focus-ring-color: var(--primitive-blue-400);
+
+  /* Dark surfaces intentionally carry deeper shadows for perceived elevation */
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.55);
+}
+
+/* ==========================================================================
+   10. REDUCED MOTION — accessibility override consumed globally
+   Components must check this token (or the media query directly) before
+   firing Framer Motion physics; this custom property lets JS read intent.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --duration-page: 0ms;
+  }
+}

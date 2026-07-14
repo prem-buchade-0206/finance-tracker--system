@@ -1,0 +1,357 @@
+/* ==========================================================================
+   src/styles/globals.css
+   Tailwind entrypoint + base resets + bespoke utility classes.
+   Import order (in main.tsx): './styles/tokens.css' THEN './styles/globals.css'
+   ========================================================================== */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* --------------------------------------------------------------------------
+   1. FONT LOADING (optimized: font-display swap, subset preload assumed
+   handled via <link rel="preload"> in index.html for the two primary weights)
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. BASE LAYER — resets, root element behavior, typography defaults
+   -------------------------------------------------------------------------- */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+  }
+
+  html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+    transition: background-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: var(--fs-4xl);
+  }
+  h2 {
+    font-size: var(--fs-3xl);
+  }
+  h3 {
+    font-size: var(--fs-2xl);
+  }
+  h4 {
+    font-size: var(--fs-xl);
+  }
+
+  /* Tabular numerals everywhere currency/numbers render — prevents layout
+     shift as digits change (critical for animated counters + tables). */
+  .font-mono,
+  [data-numeric='true'] {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1, 'zero' 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  /* WCAG AA — visible, consistent focus ring for keyboard nav only */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-xs);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+  }
+
+  /* Custom scrollbar — theme-synced (Webkit + Firefox) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: var(--radius-full);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  #root {
+    isolation: isolate;
+    min-height: 100dvh;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. COMPONENTS LAYER — bespoke reusable primitives (glass, aurora, shimmer)
+   -------------------------------------------------------------------------- */
+@layer components {
+  /* Glassmorphism surface — base card treatment used across dashboard,
+     modals, and floating tooltips. */
+  .glass-surface {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-surface-strong {
+    background-color: var(--glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Aurora background glow — mount once behind the app shell, fixed position,
+     pointer-events none, low z-index. Three independently animated blobs. */
+  .aurora-background {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-base);
+    pointer-events: none;
+    opacity: var(--aurora-opacity);
+    background-image: var(--aurora-glow-1), var(--aurora-glow-2), var(--aurora-glow-3);
+    background-repeat: no-repeat;
+    will-change: transform, opacity;
+  }
+
+  .aurora-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--aurora-glow-1);
+    animation: aurora-drift-1 18s var(--ease-standard) infinite alternate;
+  }
+
+  .aurora-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--aurora-glow-2), var(--aurora-glow-3);
+    animation: aurora-drift-2 22s var(--ease-standard) infinite alternate;
+  }
+
+  /* Shimmer skeleton — loading state for cards, table rows, chart placeholders */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--skeleton-base);
+    border-radius: var(--radius-md);
+  }
+
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--skeleton-shimmer),
+      transparent
+    );
+    animation: shimmer-sweep 1.6s var(--ease-standard) infinite;
+  }
+
+  /* Financial pill badges — income/expense/neutral tags used in tables + lists */
+  .badge-positive {
+    color: var(--color-financial-positive);
+    background-color: var(--color-financial-positive-bg);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+  }
+
+  .badge-negative {
+    color: var(--color-financial-negative);
+    background-color: var(--color-financial-negative-bg);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+  }
+
+  .badge-neutral {
+    color: var(--color-financial-neutral);
+    background-color: var(--color-financial-neutral-bg);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+  }
+
+  /* Magnetic button base — Framer Motion handles the transform/spring in JS,
+     this class only sets the resting visual state + GPU hint. */
+  .btn-magnetic {
+    position: relative;
+    will-change: transform;
+    transition: box-shadow var(--duration-fast) var(--ease-magnetic);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. UTILITIES LAYER — one-off escape-hatch utilities not worth a component
+   -------------------------------------------------------------------------- */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .gpu-layer {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. KEYFRAMES
+   -------------------------------------------------------------------------- */
+@keyframes shimmer-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes aurora-drift-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(4%, 6%) scale(1.08);
+  }
+}
+
+@keyframes aurora-drift-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-5%, -4%) scale(1.05);
+  }
+}
+
+/* Reduced motion: aurora blobs freeze, shimmer becomes a static pulse
+   instead of a sweeping gradient (still communicates "loading" state). */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-background::before,
+  .aurora-background::after {
+    animation: none;
+  }
+
+  .skeleton::after {
+    animation: none;
+    opacity: 0.5;
+  }
+}
