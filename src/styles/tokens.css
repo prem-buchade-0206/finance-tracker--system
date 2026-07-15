@@ -51,9 +51,9 @@
   /* ------------------------------------------------------------------------
      2. TYPOGRAPHY TOKENS
      ------------------------------------------------------------------------ */
-  --font-display: 'Clash Display', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --raw-font-display: 'Clash Display', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --raw-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --raw-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   --fs-2xs: 0.6875rem;   /* 11px */
   --fs-xs: 0.75rem;      /* 12px */
@@ -104,13 +104,13 @@
   /* ------------------------------------------------------------------------
      4. RADIUS SCALE
      ------------------------------------------------------------------------ */
-  --radius-xs: 0.375rem;
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
+  --raw-radius-xs: 0.375rem;
+  --raw-radius-sm: 0.5rem;
+  --raw-radius-md: 0.75rem;
+  --raw-radius-lg: 1rem;
+  --raw-radius-xl: 1.25rem;
+  --raw-radius-2xl: 1.5rem;
+  --raw-radius-3xl: 2rem;
   --radius-full: 9999px;
 
   /* ------------------------------------------------------------------------
@@ -130,19 +130,19 @@
   /* ------------------------------------------------------------------------
      6. MOTION / TRANSITION PHYSICS
      ------------------------------------------------------------------------ */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
-  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
-  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-magnetic: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring-stiff: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --raw-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --raw-ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --raw-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --raw-ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --raw-ease-magnetic: cubic-bezier(0.16, 1, 0.3, 1);
+  --raw-ease-spring-stiff: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
-  --duration-instant: 100ms;
-  --duration-fast: 150ms;
-  --duration-base: 250ms;
-  --duration-slow: 400ms;
-  --duration-slower: 600ms;
-  --duration-page: 800ms;
+  --raw-duration-instant: 100ms;
+  --raw-duration-fast: 150ms;
+  --raw-duration-base: 250ms;
+  --raw-duration-slow: 400ms;
+  --raw-duration-slower: 600ms;
+  --raw-duration-page: 800ms;
 
   /* Framer Motion spring presets (consumed via JS, mirrored here for reference) */
   --spring-stiffness-soft: 120;
@@ -155,15 +155,15 @@
   /* ------------------------------------------------------------------------
      7. SHADOWS (elevation system)
      ------------------------------------------------------------------------ */
-  --shadow-xs: 0 1px 2px 0 rgb(15 23 42 / 0.04);
-  --shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06);
-  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06);
-  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.05);
-  --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 8px 10px -6px rgb(15 23 42 / 0.05);
-  --shadow-2xl: 0 25px 50px -12px rgb(15 23 42 / 0.25);
-  --shadow-glow-blue: 0 0 24px 0 rgb(59 130 246 / 0.35);
-  --shadow-glow-emerald: 0 0 24px 0 rgb(16 185 129 / 0.35);
-  --shadow-glow-rose: 0 0 24px 0 rgb(244 63 94 / 0.35);
+  --raw-shadow-xs: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --raw-shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06);
+  --raw-shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06);
+  --raw-shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.05);
+  --raw-shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 8px 10px -6px rgb(15 23 42 / 0.05);
+  --raw-shadow-2xl: 0 25px 50px -12px rgb(15 23 42 / 0.25);
+  --raw-shadow-glow-blue: 0 0 24px 0 rgb(59 130 246 / 0.35);
+  --raw-shadow-glow-emerald: 0 0 24px 0 rgb(16 185 129 / 0.35);
+  --raw-shadow-glow-rose: 0 0 24px 0 rgb(244 63 94 / 0.35);
 
   /* ------------------------------------------------------------------------
      8. LIGHT THEME — SEMANTIC TOKENS (default scope)
@@ -175,32 +175,32 @@
   --color-bg-muted: var(--primitive-slate-200);
   --color-bg-inverse: var(--primitive-slate-900);
 
-  --color-border-default: var(--primitive-slate-200);
-  --color-border-subtle: var(--primitive-slate-100);
-  --color-border-strong: var(--primitive-slate-300);
-  --color-border-focus: var(--primitive-blue-500);
+  --raw-color-border-default: var(--primitive-slate-200);
+  --raw-color-border-subtle: var(--primitive-slate-100);
+  --raw-color-border-strong: var(--primitive-slate-300);
+  --raw-color-border-focus: var(--primitive-blue-500);
 
-  --color-text-primary: var(--primitive-slate-900);
-  --color-text-secondary: var(--primitive-slate-600);
-  --color-text-tertiary: var(--primitive-slate-400);
-  --color-text-inverse: var(--primitive-slate-0);
-  --color-text-disabled: var(--primitive-slate-300);
+  --raw-color-text-primary: var(--primitive-slate-900);
+  --raw-color-text-secondary: var(--primitive-slate-600);
+  --raw-color-text-tertiary: var(--primitive-slate-400);
+  --raw-color-text-inverse: var(--primitive-slate-0);
+  --raw-color-text-disabled: var(--primitive-slate-300);
 
-  --color-brand-primary: var(--primitive-blue-600);
-  --color-brand-primary-hover: var(--primitive-blue-700);
-  --color-brand-secondary: var(--primitive-violet-500);
+  --raw-color-brand-primary: var(--primitive-blue-600);
+  --raw-color-brand-primary-hover: var(--primitive-blue-700);
+  --raw-color-brand-secondary: var(--primitive-violet-500);
 
-  --color-financial-positive: var(--primitive-emerald-500);
-  --color-financial-positive-bg: rgb(16 185 129 / 0.1);
-  --color-financial-negative: var(--primitive-rose-500);
-  --color-financial-negative-bg: rgb(244 63 94 / 0.1);
-  --color-financial-neutral: var(--primitive-amber-500);
-  --color-financial-neutral-bg: rgb(245 158 11 / 0.1);
+  --raw-color-financial-positive: var(--primitive-emerald-500);
+  --raw-color-financial-positive-bg: rgb(16 185 129 / 0.1);
+  --raw-color-financial-negative: var(--primitive-rose-500);
+  --raw-color-financial-negative-bg: rgb(244 63 94 / 0.1);
+  --raw-color-financial-neutral: var(--primitive-amber-500);
+  --raw-color-financial-neutral-bg: rgb(245 158 11 / 0.1);
 
-  --color-success: var(--primitive-emerald-500);
-  --color-warning: var(--primitive-amber-500);
-  --color-danger: var(--primitive-rose-500);
-  --color-info: var(--primitive-blue-500);
+  --raw-color-success: var(--primitive-emerald-500);
+  --raw-color-warning: var(--primitive-amber-500);
+  --raw-color-danger: var(--primitive-rose-500);
+  --raw-color-info: var(--primitive-blue-500);
 
   /* Glassmorphism — light mode */
   --glass-bg: rgb(255 255 255 / 0.65);
@@ -252,32 +252,32 @@
   --color-bg-muted: var(--primitive-slate-700);
   --color-bg-inverse: var(--primitive-slate-50);
 
-  --color-border-default: var(--primitive-slate-700);
-  --color-border-subtle: var(--primitive-slate-800);
-  --color-border-strong: var(--primitive-slate-600);
-  --color-border-focus: var(--primitive-blue-400);
+  --raw-color-border-default: var(--primitive-slate-700);
+  --raw-color-border-subtle: var(--primitive-slate-800);
+  --raw-color-border-strong: var(--primitive-slate-600);
+  --raw-color-border-focus: var(--primitive-blue-400);
 
-  --color-text-primary: var(--primitive-slate-50);
-  --color-text-secondary: var(--primitive-slate-300);
-  --color-text-tertiary: var(--primitive-slate-500);
-  --color-text-inverse: var(--primitive-slate-900);
-  --color-text-disabled: var(--primitive-slate-600);
+  --raw-color-text-primary: var(--primitive-slate-50);
+  --raw-color-text-secondary: var(--primitive-slate-300);
+  --raw-color-text-tertiary: var(--primitive-slate-500);
+  --raw-color-text-inverse: var(--primitive-slate-900);
+  --raw-color-text-disabled: var(--primitive-slate-600);
 
-  --color-brand-primary: var(--primitive-blue-500);
-  --color-brand-primary-hover: var(--primitive-blue-400);
-  --color-brand-secondary: var(--primitive-violet-400);
+  --raw-color-brand-primary: var(--primitive-blue-500);
+  --raw-color-brand-primary-hover: var(--primitive-blue-400);
+  --raw-color-brand-secondary: var(--primitive-violet-400);
 
-  --color-financial-positive: var(--primitive-emerald-400);
-  --color-financial-positive-bg: rgb(52 211 153 / 0.12);
-  --color-financial-negative: var(--primitive-rose-400);
-  --color-financial-negative-bg: rgb(251 113 133 / 0.12);
-  --color-financial-neutral: var(--primitive-amber-400);
-  --color-financial-neutral-bg: rgb(251 191 36 / 0.12);
+  --raw-color-financial-positive: var(--primitive-emerald-400);
+  --raw-color-financial-positive-bg: rgb(52 211 153 / 0.12);
+  --raw-color-financial-negative: var(--primitive-rose-400);
+  --raw-color-financial-negative-bg: rgb(251 113 133 / 0.12);
+  --raw-color-financial-neutral: var(--primitive-amber-400);
+  --raw-color-financial-neutral-bg: rgb(251 191 36 / 0.12);
 
-  --color-success: var(--primitive-emerald-400);
-  --color-warning: var(--primitive-amber-400);
-  --color-danger: var(--primitive-rose-400);
-  --color-info: var(--primitive-blue-400);
+  --raw-color-success: var(--primitive-emerald-400);
+  --raw-color-warning: var(--primitive-amber-400);
+  --raw-color-danger: var(--primitive-rose-400);
+  --raw-color-info: var(--primitive-blue-400);
 
   /* Glassmorphism — dark mode */
   --glass-bg: rgb(15 23 42 / 0.55);
@@ -310,10 +310,10 @@
   --focus-ring-color: var(--primitive-blue-400);
 
   /* Dark surfaces intentionally carry deeper shadows for perceived elevation */
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.2);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.2);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.55);
+  --raw-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --raw-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+  --raw-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+  --raw-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.55);
 }
 
 /* ==========================================================================
@@ -323,11 +323,11 @@
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --duration-instant: 0ms;
-    --duration-fast: 0ms;
-    --duration-base: 0ms;
-    --duration-slow: 0ms;
-    --duration-slower: 0ms;
-    --duration-page: 0ms;
+    --raw-duration-instant: 0ms;
+    --raw-duration-fast: 0ms;
+    --raw-duration-base: 0ms;
+    --raw-duration-slow: 0ms;
+    --raw-duration-slower: 0ms;
+    --raw-duration-page: 0ms;
   }
 }

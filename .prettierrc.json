@@ -13,7 +13,7 @@
   "jsxSingleQuote": false,
 
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./tailwind.config.ts",
+  "tailwindStylesheet": "./src/styles/globals.css",
   "tailwindFunctions": ["clsx", "cn", "twMerge"],
 
   "overrides": [

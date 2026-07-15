@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta name="description" content="Personal finance tracker — accounts, budgets, and spending insights in one place." />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- noindex intentional: a finance app's data views should never be
+         crawlable/indexable, even on a staging deploy that gets misconfigured. -->
+
+    <!-- Font preloads — must exactly match the woff2 paths referenced by
+         @font-face in globals.css, and must come before any stylesheet link
+         so the browser starts the font fetch immediately, not after CSSOM
+         parse discovers the @font-face rule. -->
+    <link
+      rel="preload"
+      href="/fonts/PlusJakartaSans-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/ClashDisplay-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <title>Finance Tracker</title>
+  </head>
+  <body>
+    <!-- Aurora background glow layer — fixed, behind everything, mounted
+         once here rather than per-page so it persists across route
+         transitions without re-triggering its drift animation. Styled via
+         .aurora-background in globals.css, tokens from tokens.css. -->
+    <div class="aurora-background" aria-hidden="true"></div>
+
+    <!-- Inline pre-hydration script: reads the persisted theme choice and
+         applies data-theme to <html> BEFORE React mounts, preventing a
+         flash of the wrong theme (FOUC) on page load. ThemeProvider takes
+         over from here once React hydrates. -->
+    <script>
+      (function () {
+        try {
+          var stored = window.localStorage.getItem('finance_tracker_theme');
+          var mode = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          var resolved =
+            mode === 'system'
+              ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : mode;
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
