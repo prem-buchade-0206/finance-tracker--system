@@ -62,22 +62,28 @@ const expenseFormSchema = baseTransactionFieldsSchema.extend({
   isReimbursable: z.boolean(),
 });
 
-const transferFormSchema = baseTransactionFieldsSchema
-  .extend({
-    type: z.literal('transfer'),
-    toAccountId: z.string().uuid('Select a destination account'),
-    categoryId: z.null(),
-  })
-  .refine((data) => data.accountId !== data.toAccountId, {
+const transferFormSchema = baseTransactionFieldsSchema.extend({
+  type: z.literal('transfer'),
+  toAccountId: z.string().uuid('Select a destination account'),
+  categoryId: z.null(),
+});
+
+// The same-account check moved here, applied AFTER the union is built,
+// rather than as a .refine() on transferFormSchema itself. This is a real
+// Zod constraint worth calling out: z.discriminatedUnion() requires every
+// member to be a plain ZodObject so it can read the discriminant key
+// directly off each one's shape. Calling .refine() on a member first wraps
+// it in a ZodEffects, which has no .shape — discriminatedUnion then throws
+// "Cannot read properties of undefined (reading 'type')" at runtime the
+// moment the schema is used, not at schema-definition time, which is what
+// made this crash the whole TransactionsPage instead of failing loudly
+// during development.
+export const transactionFormSchema = z
+  .discriminatedUnion('type', [incomeFormSchema, expenseFormSchema, transferFormSchema])
+  .refine((data) => data.type !== 'transfer' || data.accountId !== data.toAccountId, {
     message: 'Source and destination accounts must be different',
     path: ['toAccountId'],
   });
-
-export const transactionFormSchema = z.discriminatedUnion('type', [
-  incomeFormSchema,
-  expenseFormSchema,
-  transferFormSchema,
-]);
 
 export type TransactionFormValues = z.infer<typeof transactionFormSchema>;
 
